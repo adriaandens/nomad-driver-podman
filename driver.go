@@ -681,7 +681,11 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 	createOpts.ContainerSecurityConfig.CapAdd = driverConfig.CapAdd
 	createOpts.ContainerSecurityConfig.CapDrop = driverConfig.CapDrop
 	createOpts.ContainerSecurityConfig.SelinuxOpts = driverConfig.SelinuxOpts
-	createOpts.ContainerSecurityConfig.User = cfg.User
+	if driverConfig.ContainerUser != "" {
+		createOpts.ContainerSecurityConfig.User = driverConfig.ContainerUser
+	} else {
+		createOpts.ContainerSecurityConfig.User = cfg.User
+	}
 	createOpts.ContainerSecurityConfig.Privileged = driverConfig.Privileged
 	createOpts.ContainerSecurityConfig.ReadOnlyFilesystem = driverConfig.ReadOnlyRootfs
 	createOpts.ContainerSecurityConfig.ApparmorProfile = driverConfig.ApparmorProfile

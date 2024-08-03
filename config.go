@@ -88,6 +88,7 @@ var (
 		})),
 		"auth_soft_fail": hclspec.NewAttr("auth_soft_fail", "bool", false),
 		"command":        hclspec.NewAttr("command", "string", false),
+		"container_user": hclspec.NewAttr("container_user", "string", false),
 		"cap_add":        hclspec.NewAttr("cap_add", "list(string)", false),
 		"cap_drop":       hclspec.NewAttr("cap_drop", "list(string)", false),
 		"selinux_opts":   hclspec.NewAttr("selinux_opts", "list(string)", false),
@@ -212,6 +213,7 @@ type TaskConfig struct {
 	Ports             []string           `codec:"ports"`
 	Tmpfs             []string           `codec:"tmpfs"`
 	Volumes           []string           `codec:"volumes"`
+	ContainerUser     string             `codec:"container_user"`
 	CapAdd            []string           `codec:"cap_add"`
 	CapDrop           []string           `codec:"cap_drop"`
 	SelinuxOpts       []string           `codec:"selinux_opts"`
